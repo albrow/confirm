@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-const usage = `Confirm is a tiny but useful utility for confirming actions.
+const usage = `Confirm is a tiny utility for confirming actions.
 
 Usage:
 
