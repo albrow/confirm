@@ -17,15 +17,29 @@ Usage:
 
 'message' is a message that will be printed out to the user.
 
-After the message has been printed out, by default confirm
-will wait to receive either 'yes' or 'y' (case-insensitive)
-before continuing. You can enter 'no' or 'n' (case-insensitive)
-to cancel the action and return a non-zero status code.
-
-You can use flags to change the default case-sensitivity and
-which values are used to indicate confirmation or cancelation.
+After the message has been printed out, by default confirm will wait to receive
+either 'yes' or 'y' (case-insensitive) before continuing. You can enter 'no' or
+'n' (case-insensitive) to cancel the action and return a non-zero status code.
 
 The flags are:
+
+    help
+        Print usage information.
+
+    case-sensitive
+        Make confirmation of the given input case-sensitive instead of the
+        default, case-insensitive.
+
+    confirm-with
+        Comma-separated list of values to indicate confirmation. If one of these
+        values is provided, confirm will exit with a status code of 0. (default:
+        'y,yes').
+
+    cancel-with
+        Comma-separated list of values to indicate cancelation. If one of these
+        values is provided, confirm will indicate the action was canceled and
+        exit with a status code of 1. An empty string means no value will result
+        in cancelation. (default: 'n,no').
 
 `
 
@@ -41,16 +55,14 @@ func main() {
 		confirmWith   string
 		cancelWith    string
 	)
-	flag.BoolVar(&help, "help", false, "Print usage information.")
-	flag.BoolVar(&caseSensitive, "case-sensitive", false, "Make confirmation of the given input case-sensitive instead of the default, case-insensitive.")
-	flag.StringVar(&confirmWith, "confirm-with", "y,yes", "Comma-separated list of values to indicate confirmation. If one of these values is provided, confirm will exit with a status code of 0.")
-	flag.StringVar(&cancelWith, "cancel-with", "n,no", "Comma-separated list of values to indicate cancelation. If one of these values is provided, confirm will indicate the action was canceled and exit with a status code of 1. An empty string means no value will result in cancelation.")
+	flag.BoolVar(&help, "help", false, "")
+	flag.BoolVar(&caseSensitive, "case-sensitive", false, "")
+	flag.StringVar(&confirmWith, "confirm-with", "y,yes", "")
+	flag.StringVar(&cancelWith, "cancel-with", "n,no", "")
 	flag.Parse()
 
 	if help {
 		print(usage)
-		flag.PrintDefaults()
-		print("\n")
 		os.Exit(0)
 	}
 
