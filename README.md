@@ -5,8 +5,11 @@ used in user-executable scripts or makefiles.
 
 ## Installation
 
-To install confirm, you must first [install Go](https://golang.org/dl/).
-Confirm requires Go version 1.6+. If you have Go installed, simply run:
+
+### Install with Go Get
+
+You can install Go from the [official Go website](https://golang.org/dl/).
+Confirm requires Go version 1.6+. Once you have Go installed, simply run:
 
 ```
 go get -u github.com/albrow/confirm
@@ -22,6 +25,12 @@ export PATH=$GOPATH/bin
 
 Alternatively, you can run confirm by specifying the full
 path: __$GOPATH/bin/confirm__.
+
+### Install Binaries Directly
+
+If you don't want to install Go, you can simply download pre-compiled binaries
+for Darwin (Mac OS) and Linux from the
+[Releases page](https://github.com/albrow/confirm/releases).
 
 ## Example Usage
 
