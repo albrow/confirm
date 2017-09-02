@@ -23,8 +23,9 @@ cancel the action and return a non-zero status code.
 The fags are:
 
     --help
-        Print this message.
-
+        Print usage information.
+    --case-sensitive
+        Make confirmation of the given input case-sensitive instead of the default, case-insensitive.
 `
 
 // maxAttempts is the maximum number of times to receive user input
@@ -33,8 +34,12 @@ The fags are:
 const maxAttempts = 3
 
 func main() {
-	var help bool
+	var (
+		help          bool
+		caseSensitive bool
+	)
 	flag.BoolVar(&help, "help", false, "Print usage information.")
+	flag.BoolVar(&caseSensitive, "case-sensitive", false, "Make confirmation of the given input case-sensitive instead of the default, case-insensitive.")
 	flag.Parse()
 
 	if help {
@@ -56,7 +61,12 @@ func main() {
 	attempts := 0
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
-		input := strings.ToLower(scanner.Text())
+		input := scanner.Text()
+		// If caseSensitive is false, we want to treat the
+		// input as case-insensitive.
+		if !caseSensitive {
+			input = strings.ToLower(input)
+		}
 		switch input {
 		case "y", "yes":
 			os.Exit(0)
