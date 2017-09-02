@@ -1,0 +1,4 @@
+package: github.com/albrow/confirm
+import:
+- package: github.com/albrow/stringset
+  version: 2.x

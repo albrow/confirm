@@ -1,12 +1,12 @@
 # Confirm
 
 A tiny but useful utility for confirming actions, typically
-used in scripts or makefiles.
+used in user-executable scripts or makefiles.
 
 ## Installation
 
 To install confirm, you must first [install Go](https://golang.org/dl/).
-If you have Go installed, simply run:
+Confirm requires Go version 1.6+. If you have Go installed, simply run:
 
 ```
 go get -u github.com/albrow/confirm
@@ -61,6 +61,22 @@ Deploying application to production...
 It will wait for you to type in 'yes' or 'y' (case-insensitive)
 before continuing. You can type 'no' or 'n' to cancel. Using
 the key combination `Ctrl+C` will also cancel.
+
+## Advanced Usage
+
+You can supply flags to change the default behavior.
+
+For example, you can use the `--confirm-with` and `--case-sensitive`
+flags to wait for the user to type in a specific value exactly before
+continuing:
+
+```bash
+confirm \
+--case-sensitive \
+--confirm-with='my_test_database' \
+'Are you sure you want to delete the database? Please enter the name of the database to confirm. (my_test_database)' && \
+dropdb my_test_database
+```
 
 For more information and documentation about all the flags
 and options that confirm supports, run `confirm --help`.

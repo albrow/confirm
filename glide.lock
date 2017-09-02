@@ -1,0 +1,6 @@
+hash: 88542d8292fadf3f1cd08a7bf699169a811d3c81d49b719fc6812bf62561c166
+updated: 2017-09-01T20:16:57.002324668-04:00
+imports:
+- name: github.com/albrow/stringset
+  version: 5cbcec770ff3993feab398d47a8c0ca9f0a812de
+testImports: []
